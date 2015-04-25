@@ -1,0 +1,23 @@
+PURCHASE 20 SHOP1			
+			
+name	price	life(days)	product_date
+milk	5.5	7	2014/5/1
+milk	5.5	7	2014/5/2
+milk	5.5	7	2014/5/1
+yogurt	5.9	10	2014/5/2
+yogurt	5.9	10	2014/5/1
+lunch	11.8	2	2014/5/1
+lunch	11.8	2	2014/5/1
+lunch	11.8	2	2014/5/2
+lunch	11.8	2	2014/5/2
+lunch	11.8	2	2014/5/1
+bread	4.5	3	2014/5/1
+bread	4.5	3	2014/5/2
+bread	4.5	3	2014/5/2
+bread	4.5	3	2014/5/1
+bread	4.5	3	2014/5/2
+sausage	3	1	2014/5/2
+oden	6	1	2014/5/2
+oden	6	1	2014/5/2
+bun	2	1	2014/5/2
+fruit	4.2	4	2014/5/2
