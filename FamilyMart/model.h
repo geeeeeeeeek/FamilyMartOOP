@@ -19,7 +19,7 @@ namespace model
 			return name;
 		};
 		
-		float get_price()
+		double get_price()
 		{
 			return price;
 		};
@@ -78,7 +78,7 @@ namespace model
 			{
 				if (it->get_name()==itname)
 				{
-					int price = it->get_price();
+					double price = it->get_price();
 					items.erase(it);
 					return price;
 				}
