@@ -55,4 +55,4 @@ Here I use default argument for two reasons. First, this function has over 100 l
 Case for overloading? Nope, I didn’t implement one cause no need.
 
 ###PART 3. Examples
- ![enter image description here](https://lh3.googleusercontent.com/-gY72hbpZSpg/VTtuBL21F0I/AAAAAAAABs4/7gUFSQitfAo/s0/3.png "3.png")
+ ![enter image description here](https://lh3.googleusercontent.com/-kCAMVKVoqgs/VT9AseiCcwI/AAAAAAAABuE/XrwzzvTNd1Y/w657-h430-no/QQ%E6%88%AA%E5%9B%BE20150428155128.png "3.png")
