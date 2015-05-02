@@ -1,0 +1,11 @@
+ITEMS
+
+name	id	price	life(days)
+milk	1331	5.5	7
+yogurt	1332	5.9	10
+lunch	1333	11.8	2
+bread	1334	4.5	3
+sausage	1335	3	3
+oden	1336	6	3
+bun	1337	2	3
+fruit	1338	4.2	4

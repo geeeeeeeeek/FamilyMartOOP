@@ -14,8 +14,12 @@ bread
 bread
 
 SALE3 0.8 SHOP1
+fruit
+fruit
+fruit
 yogurt
 bread
 milk
 fruit
+vegetable
 oden

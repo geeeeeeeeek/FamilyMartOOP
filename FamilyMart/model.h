@@ -5,13 +5,14 @@ namespace model
 {
 	class item
 	{
+		
 	public:
-		item(std::string name,double price,int life, std::string product_date)
+		item(std::string name,int id,double price,int life)
 		{
 			this->name=name;
 			this->price=price;
 			this->life=life;
-			this->product_date=product_date;
+			this->id=id;
 		}
 
 		std::string get_name()
@@ -24,11 +25,26 @@ namespace model
 			return price;
 		};
 
+		void incr_remains(std::string product_date)
+		{
+			pieces.push_back(product_date);
+		}
+
+		void decr_remains()
+		{
+			pieces.pop_back();
+		}
+
+		int get_remains()
+		{
+			return this->pieces.size();
+		}
 	private:
 		std::string name;
 		double price;
+		int id;
 		int life;
-		std::string product_date;
+		std::vector<std::string> pieces;
 	};
 
 	class warehouse
@@ -62,13 +78,22 @@ namespace model
 			return *this;
 		}
 
-		void add_items(std::vector<item> its)
+		void add_item(std::string name, std::string product_date)
 		{
-			this->items.insert(this->items.end(),items.begin(),items.end());
+			for (std::vector<item>::iterator i = items.begin() ; i != items.end(); ++i)
+			{
+				if (i->get_name()==name)
+				{
+					//increase remains
+					i->incr_remains(product_date);
+					return;
+				}
+			}
 		}
 
 		void add_item(item it)
 		{
+			//if there was no that item before
 			items.push_back(it);
 		}
 
@@ -78,29 +103,34 @@ namespace model
 			{
 				if (it->get_name()==itname)
 				{
-					double price = it->get_price();
-					items.erase(it);
-					return price;
+					if (it->get_remains()>0)
+					{
+						it->decr_remains();
+						return it->get_price();
+					}
+						//if sold out
+						return 0;
 				}
 			}
-			return 0;
-		}
-
-		std::vector<item> get_items()
-		{
-			return this->items;
+			//if not found
+			return -1;
 		}
 
 		int get_items_count()
 		{
-			return items.size();
+			int count=0;
+			for (std::vector<item>::iterator it = items.begin() ; it != items.end(); ++it)
+			{
+				count+=it->get_remains();
+			}
+			return count;
 		}
 	private:
 		std::vector<item> items;
 
 		void close()
 		{
-			if (items.size()==space)
+			if (get_items_count()==space)
 			{
 std::cout<<shop_name<<" "<<space<<" destructor is invoked."<< std::endl;
 			}
@@ -109,6 +139,7 @@ std::cout<<shop_name<<" "<<space<<" destructor is invoked."<< std::endl;
 
 	class shop
 	{
+		std::string records;
 	public:
 		double sales;
 		std::string shop_name;
@@ -118,9 +149,10 @@ std::cout<<shop_name<<" "<<space<<" destructor is invoked."<< std::endl;
 			shop_name=name;
 			sales=0;
 			inited=false;
+			records=shop_name+"\n";
 		}
 
-		void purchase_item(item it)
+		void prepare_item(item it)
 		{
 			if (!inited)
 			{
@@ -134,10 +166,47 @@ std::cout<<shop_name<<" "<<space<<" destructor is invoked."<< std::endl;
 			}
 			wh->add_item(it);
 		}
+
+		void purchase_item(std::string name, std::string product_date)
+		{
+			if (!inited)
+			{
+				wh= new warehouse(shop_name,25, std::vector<item>());
+				inited=true;
+			}
+			
+			if (wh->get_items_count()==wh->space)
+			{
+				*wh = wh->upgrade();
+			}
+			wh->add_item(name,product_date);
+		}
 	
 		void sell_item(std::string name,double discount)
 		{
-			sales+=discount*wh->remove_item(name);
+			double sale=wh->remove_item(name);
+			if (sale==-1)
+			{
+				std::cout << "We do not have "<<name<<"."<< std::endl;
+				return;
+			}
+			if (sale==0)
+			{
+				std::cout << name<<" is sold out!"<< std::endl;
+				return;
+			}
+			sales+=discount*sale;
+			records+=" "+name;
+		}
+
+		void add_sell_record_head(std::string head)
+		{
+			records+=head;
+		}
+
+		std::string get_sell_record()
+		{
+			return records;
 		}
 	private:
 		bool inited;
