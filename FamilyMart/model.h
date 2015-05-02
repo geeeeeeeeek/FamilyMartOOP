@@ -139,7 +139,6 @@ std::cout<<shop_name<<" "<<space<<" destructor is invoked."<< std::endl;
 
 	class shop
 	{
-		std::string records;
 	public:
 		double sales;
 		std::string shop_name;
@@ -210,5 +209,6 @@ std::cout<<shop_name<<" "<<space<<" destructor is invoked."<< std::endl;
 		}
 	private:
 		bool inited;
+		std::string records;
 	};
 }

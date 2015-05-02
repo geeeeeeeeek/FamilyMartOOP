@@ -46,7 +46,7 @@ namespace event
 
 				// prepare shop
 				model::shop shop("SHOP1");
-				
+
 
 				// skip second and third line
 				std::getline(is, line);
@@ -108,7 +108,7 @@ namespace event
 				{
 					std::getline(is, line);
 					int div=line.find_first_of(" \t");
-					
+
 					// prepare item
 					std::string name = line.substr(0,div),
 						product_date = line.substr(div+1,line.length()-div-1);
@@ -153,7 +153,7 @@ namespace event
 				{
 					std::getline(is, line);
 					int div=line.find_first_of(" \t");
-					
+
 					// prepare item
 					std::string name = line.substr(0,div),
 						product_date = line.substr(div+1,line.length()-div-1);
@@ -184,7 +184,7 @@ namespace event
 					{
 						subscriber=line.substr(div1+1,line.length()-div1-1);
 					}
-					
+
 					// prepare shop
 					std::vector<model::shop>::iterator it;
 					for (it = subscribers.begin() ; it != subscribers.end(); ++it)
@@ -210,7 +210,7 @@ namespace event
 						subscribers.push_back(shop);
 					}
 				}
-				
+
 			}
 			if (command.compare("show_sale_amount")==0)
 			{
@@ -231,8 +231,12 @@ namespace event
 			{
 				for (std::vector<model::shop>::iterator it = subscribers.begin() ; it != subscribers.end(); ++it)
 				{
-					std::cout << it->get_sell_record();
-					return;
+					if (it->shop_name==file)
+					{
+						std::cout << it->get_sell_record();
+						return;
+					}
+
 				}
 				std::cout<< "This shop does not exist!"<< std::endl;
 			}
