@@ -1,4 +1,6 @@
 ####OOP Lab3 (Family Mart)
+
+[![Join the chat at https://gitter.im/geeeeeeeeek/FamilyMartOOP](https://badges.gitter.im/geeeeeeeeek/FamilyMartOOP.svg)](https://gitter.im/geeeeeeeeek/FamilyMartOOP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A lab belonging to the OOP course.
 
 ###PART 1. Implementation
